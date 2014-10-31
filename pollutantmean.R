@@ -11,6 +11,3 @@ pollutantMean <- function (directory, pollutantToFind, ids) {
     
     mean(pollutionFrame$sulfate, na.rm=TRUE)
 }
-
-
-
