@@ -1,8 +1,9 @@
 corr <- function (directory, threshold = 0) {
     correlationFiles <- list.files(directory, full.name=TRUE)
-    acceptedVector = c()
-    s <- vector()
+    syncedResults = c()
     i = 1
+    caseCount = 1
+
     for (i in 1:length(correlationFiles)) {
         # for each file, return the rows that have x > threshold observed cases on both vars.
         currentFile <- read.csv(correlationFiles[i])
@@ -13,9 +14,11 @@ corr <- function (directory, threshold = 0) {
         numberOfCompleteCases = nrow(completeCases)
         if (numberOfCompleteCases > threshold) {
             currentCorrelation <- cor(completeCases$sulfate, completeCases$nitrate)
-            acceptedVector[i - 1] = currentCorrelation
+            syncedResults[caseCount] = currentCorrelation
+            caseCount = caseCount + 1
             
         }
     }
-    acceptedVector
+#    acceptedVector
+    syncedResults
 }
